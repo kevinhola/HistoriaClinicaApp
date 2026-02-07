@@ -1,0 +1,76 @@
+<Window x:Class="HistoriaClinicaApp.Views.PacienteDetalleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Detalle del Paciente" 
+        Height="700" Width="1100"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Border Grid.Row="0" 
+                Background="#007ACC" 
+                Padding="20">
+            <StackPanel>
+                <TextBlock Text="{Binding NombreCompleto}" 
+                          FontSize="22" 
+                          FontWeight="Bold"
+                          Foreground="White"/>
+                <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                    <TextBlock Text="DNI: " Foreground="White" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding Paciente.DNI}" Foreground="White" Margin="5,0,20,0"/>
+                    <TextBlock Text="Edad: " Foreground="White" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding Paciente.Edad}" Foreground="White" Margin="5,0,5,0"/>
+                    <TextBlock Text="años" Foreground="White" Margin="0,0,20,0"/>
+                    <TextBlock Text="Sexo: " Foreground="White" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding Paciente.Sexo}" Foreground="White"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        
+        <TabControl Grid.Row="1" Margin="10">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="📋 " FontSize="16"/>
+                        <TextBlock Text="Historia Clínica" FontSize="14"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <ContentControl x:Name="HistoriaContent"/>
+            </TabItem>
+            
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🩺 " FontSize="16"/>
+                        <TextBlock Text="Consultas" FontSize="14"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <ContentControl x:Name="ConsultasContent"/>
+            </TabItem>
+            
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🧪 " FontSize="16"/>
+                        <TextBlock Text="Estudios" FontSize="14"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <ContentControl x:Name="EstudiosContent"/>
+            </TabItem>
+            
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="📁 " FontSize="16"/>
+                        <TextBlock Text="Archivos" FontSize="14"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <ContentControl x:Name="ArchivosContent"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

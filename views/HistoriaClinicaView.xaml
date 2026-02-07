@@ -1,0 +1,86 @@
+<UserControl x:Class="HistoriaClinicaApp.Views.HistoriaClinicaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="20">
+            <TextBlock Text="Historia Clínica" 
+                      FontSize="24" 
+                      FontWeight="Bold"
+                      Margin="0,0,0,20"/>
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Paciente:" FontWeight="Bold" Margin="0,5"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding NombrePaciente}" Margin="0,5"/>
+                
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="DNI:" FontWeight="Bold" Margin="0,5"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DNIPaciente}" Margin="0,5"/>
+                
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Edad:" FontWeight="Bold" Margin="0,5"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding EdadPaciente}" Margin="0,5"/>
+            </Grid>
+            
+            <Separator Margin="0,20"/>
+            
+            <!-- Antecedentes -->
+            <TextBlock Text="Antecedentes Médicos:" FontWeight="Bold" Margin="0,10,0,5"/>
+            <TextBox Text="{Binding Historia.Antecedentes, UpdateSourceTrigger=PropertyChanged}" 
+                     TextWrapping="Wrap" 
+                     AcceptsReturn="True"
+                     MinHeight="80"
+                     MaxHeight="150"/>
+            
+            <!-- Alergias -->
+            <TextBlock Text="Alergias:" FontWeight="Bold" Margin="0,10,0,5"/>
+            <TextBox Text="{Binding Historia.Alergias, UpdateSourceTrigger=PropertyChanged}" 
+                     TextWrapping="Wrap" 
+                     AcceptsReturn="True"
+                     MinHeight="60"/>
+            
+            <!-- Medicación Habitual -->
+            <TextBlock Text="Medicación Habitual:" FontWeight="Bold" Margin="0,10,0,5"/>
+            <TextBox Text="{Binding Historia.MedicacionHabitual, UpdateSourceTrigger=PropertyChanged}" 
+                     TextWrapping="Wrap" 
+                     AcceptsReturn="True"
+                     MinHeight="60"/>
+            
+            <!-- Grupo Sanguíneo -->
+            <TextBlock Text="Grupo Sanguíneo:" FontWeight="Bold" Margin="0,10,0,5"/>
+            <ComboBox SelectedItem="{Binding Historia.GrupoSanguineo}">
+                <ComboBoxItem Content="A+"/>
+                <ComboBoxItem Content="A-"/>
+                <ComboBoxItem Content="B+"/>
+                <ComboBoxItem Content="B-"/>
+                <ComboBoxItem Content="AB+"/>
+                <ComboBoxItem Content="AB-"/>
+                <ComboBoxItem Content="O+"/>
+                <ComboBoxItem Content="O-"/>
+            </ComboBox>
+            
+            <!-- Observaciones -->
+            <TextBlock Text="Observaciones:" FontWeight="Bold" Margin="0,10,0,5"/>
+            <TextBox Text="{Binding Historia.Observaciones, UpdateSourceTrigger=PropertyChanged}" 
+                     TextWrapping="Wrap" 
+                     AcceptsReturn="True"
+                     MinHeight="80"
+                     MaxHeight="150"/>
+            
+            <Button Content="💾 Guardar Historia Clínica" 
+                   Command="{Binding GuardarHistoriaCommand}"
+                   Background="#28A745"
+                   Foreground="White"
+                   HorizontalAlignment="Left"
+                   Margin="0,20,0,0"
+                   Padding="20,10"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

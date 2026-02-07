@@ -1,0 +1,58 @@
+<Window x:Class="HistoriaClinicaApp.Views.EstudioDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Estudio Médico" 
+        Height="450" Width="500"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Tipo de Estudio:" FontWeight="Bold"/>
+            <ComboBox SelectedItem="{Binding Estudio.TipoEstudio}">
+                <ComboBoxItem Content="Análisis de Sangre"/>
+                <ComboBoxItem Content="Análisis de Orina"/>
+                <ComboBoxItem Content="Radiografía"/>
+                <ComboBoxItem Content="Tomografía"/>
+                <ComboBoxItem Content="Resonancia Magnética"/>
+                <ComboBoxItem Content="Ecografía"/>
+                <ComboBoxItem Content="Electrocardiograma"/>
+                <ComboBoxItem Content="Otro"/>
+            </ComboBox>
+            
+            <TextBlock Text="Resultado:" FontWeight="Bold" Margin="0,15,0,0"/>
+            <TextBox Text="{Binding Estudio.Resultado, UpdateSourceTrigger=PropertyChanged}" 
+                     TextWrapping="Wrap" 
+                     AcceptsReturn="True"
+                     MinHeight="100"/>
+            
+            <TextBlock Text="Observaciones:" FontWeight="Bold" Margin="0,15,0,0"/>
+            <TextBox Text="{Binding Estudio.Observaciones, UpdateSourceTrigger=PropertyChanged}" 
+                     TextWrapping="Wrap" 
+                     AcceptsReturn="True"
+                     MinHeight="80"/>
+            
+            <TextBlock Text="Fecha:" FontWeight="Bold" Margin="0,15,0,0"/>
+            <DatePicker SelectedDate="{Binding Estudio.Fecha}"/>
+        </StackPanel>
+        
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="Guardar" 
+                   Click="Guardar_Click"
+                   Background="#28A745"
+                   Foreground="White"
+                   Padding="20,8"
+                   Margin="5"/>
+            <Button Content="Cancelar" 
+                   Click="Cancelar_Click"
+                   Background="#6C757D"
+                   Foreground="White"
+                   Padding="20,8"
+                   Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Window>

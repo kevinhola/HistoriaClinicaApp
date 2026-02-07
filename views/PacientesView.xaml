@@ -1,0 +1,103 @@
+<UserControl x:Class="HistoriaClinicaApp.Views.PacientesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" 
+                   Text="Gestión de Pacientes" 
+                   FontSize="26" 
+                   FontWeight="Bold"
+                   Margin="0,0,0,20"/>
+        
+        <Grid Grid.Row="1" Margin="0,0,0,15">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <Border Grid.Column="0" 
+                    BorderBrush="#CCCCCC" 
+                    BorderThickness="1" 
+                    CornerRadius="4"
+                    Background="White">
+                <Grid>
+                    <TextBlock Text="🔍 Buscar por DNI, nombre o apellido..." 
+                              Foreground="#999999"
+                              Margin="12,8"
+                              IsHitTestVisible="False"
+                              Visibility="Collapsed"/>
+                    <TextBox Text="{Binding FiltroBusqueda, UpdateSourceTrigger=PropertyChanged}"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Padding="10,6"
+                             FontSize="14"/>
+                </Grid>
+            </Border>
+            
+            <Button Grid.Column="1" 
+                    Content="➕ Nuevo Paciente" 
+                    Command="{Binding NuevoPacienteCommand}"
+                    Background="#28A745"
+                    Foreground="White"
+                    Padding="20,10"
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    Margin="10,0,0,0"/>
+        </Grid>
+        
+        <Border Grid.Row="2" 
+                BorderBrush="#DDDDDD" 
+                BorderThickness="1"
+                CornerRadius="4"
+                Background="White">
+            <DataGrid ItemsSource="{Binding PacientesFiltrados}"
+                      SelectedItem="{Binding PacienteSeleccionado}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="DNI" Binding="{Binding DNI}" Width="110"/>
+                    <DataGridTextColumn Header="Apellido" Binding="{Binding Apellido}" Width="150"/>
+                    <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="150"/>
+                    <DataGridTextColumn Header="Fecha Nac." Binding="{Binding FechaNacimiento, StringFormat=dd/MM/yyyy}" Width="110"/>
+                    <DataGridTextColumn Header="Edad" Binding="{Binding Edad}" Width="60"/>
+                    <DataGridTextColumn Header="Sexo" Binding="{Binding Sexo}" Width="60"/>
+                    <DataGridTextColumn Header="Teléfono" Binding="{Binding Telefono}" Width="120"/>
+                    <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+                    
+                    <DataGridTemplateColumn Header="Acciones" Width="280">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button Content="👁️ Ver" 
+                                           Command="{Binding DataContext.VerDetalleCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                           CommandParameter="{Binding}"
+                                           Background="#17A2B8"
+                                           Foreground="White"
+                                           Padding="10,5"
+                                           Margin="2"/>
+                                    <Button Content="✏️ Editar" 
+                                           Command="{Binding DataContext.EditarPacienteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                           CommandParameter="{Binding}"
+                                           Background="#007ACC"
+                                           Foreground="White"
+                                           Padding="10,5"
+                                           Margin="2"/>
+                                    <Button Content="🗑️ Eliminar" 
+                                           Command="{Binding DataContext.EliminarPacienteCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                           CommandParameter="{Binding}"
+                                           Background="#DC3545"
+                                           Foreground="White"
+                                           Padding="10,5"
+                                           Margin="2"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+    </Grid>
+</UserControl>

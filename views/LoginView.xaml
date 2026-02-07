@@ -1,0 +1,51 @@
+<UserControl x:Class="HistoriaClinicaApp.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid Background="#F0F0F0">
+        <Border Width="500" Height="450" 
+                Background="White" 
+                CornerRadius="10"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="20" ShadowDepth="0" Opacity="0.3"/>
+            </Border.Effect>
+            
+            <StackPanel Margin="40">
+                <TextBlock Text="Sistema de Historia Clínica" 
+                          FontSize="20" 
+                          FontWeight="Bold"
+                          HorizontalAlignment="Center"
+                          Margin="0,0,0,10"/>
+                
+                <TextBlock Text="Iniciar Sesión" 
+                          FontSize="16"
+                          HorizontalAlignment="Center"
+                          Foreground="#666"
+                          Margin="0,0,0,30"/>
+                
+                <TextBlock Text="Usuario:" Margin="0,0,0,5"/>
+                <TextBox x:Name="TxtUsuario" 
+                         Text="{Binding Usuario, UpdateSourceTrigger=PropertyChanged}"/>
+                
+                <TextBlock Text="Contraseña:" Margin="0,15,0,5"/>
+                <PasswordBox x:Name="TxtPassword" 
+                            PasswordChanged="TxtPassword_PasswordChanged"/>
+                
+                <TextBlock x:Name="TxtError" 
+                          Foreground="Red" 
+                          TextWrapping="Wrap"
+                          Margin="0,10,0,0"
+                          Visibility="Collapsed"/>
+                
+                <Button Content="Ingresar" 
+                       Command="{Binding LoginCommand}"
+                       Background="#007ACC"
+                       Foreground="White"
+                       FontWeight="Bold"
+                       Margin="0,20,0,0"
+                       Height="35"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

@@ -1,0 +1,92 @@
+<UserControl x:Class="HistoriaClinicaApp.Views.AdminView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:HistoriaClinicaApp.Views">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" 
+                   Text="Administración de Usuarios" 
+                   FontSize="24" 
+                   FontWeight="Bold"
+                   Margin="0,0,0,20"/>
+        
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button Content="➕ Nuevo Usuario" 
+                   Command="{Binding NuevoUsuarioCommand}"
+                   Background="#28A745"
+                   Foreground="White"
+                   Padding="15,8"/>
+        </StackPanel>
+        
+        <DataGrid Grid.Row="2" 
+                  ItemsSource="{Binding Usuarios}"
+                  SelectedItem="{Binding UsuarioSeleccionado}"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Usuario" Binding="{Binding NombreUsuario}" Width="150"/>
+                <DataGridTextColumn Header="Rol" Binding="{Binding Rol.Nombre}" Width="120"/>
+                <DataGridTextColumn Header="Estado" Width="100">
+                    <DataGridTextColumn.Binding>
+                        <Binding Path="Activo">
+                            <Binding.Converter>
+                                <local:BoolToEstadoConverter/>
+                            </Binding.Converter>
+                        </Binding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Fecha Creación" Binding="{Binding FechaCreacion, StringFormat=dd/MM/yyyy}" Width="120"/>
+                
+                <DataGridTemplateColumn Header="Acciones" Width="350">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="✏️ Editar" 
+                                       Command="{Binding DataContext.EditarUsuarioCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                       CommandParameter="{Binding}"
+                                       Background="#007ACC"
+                                       Foreground="White"
+                                       Padding="8,4"
+                                       Margin="2"/>
+                                <Button Content="🔑 Reset Password" 
+                                       Command="{Binding DataContext.ResetearPasswordCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                       CommandParameter="{Binding}"
+                                       Background="#FFC107"
+                                       Foreground="White"
+                                       Padding="8,4"
+                                       Margin="2"/>
+                                <Button Background="#6C757D"
+                                       Foreground="White"
+                                       Padding="8,4"
+                                       Margin="2">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Content" Value="🔒 Desactivar"/>
+                                            <Setter Property="Background" Value="#DC3545"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Activo}" Value="False">
+                                                    <Setter Property="Content" Value="✅ Activar"/>
+                                                    <Setter Property="Background" Value="#28A745"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                    <Button.Command>
+                                        <Binding Path="DataContext.CambiarEstadoCommand" RelativeSource="{RelativeSource AncestorType=DataGrid}"/>
+                                    </Button.Command>
+                                    <Button.CommandParameter>
+                                        <Binding/>
+                                    </Button.CommandParameter>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

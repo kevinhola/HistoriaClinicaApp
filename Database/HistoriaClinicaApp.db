@@ -1,0 +1,124 @@
+-- =========================
+-- ROLES
+-- =========================
+CREATE TABLE Roles (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Nombre TEXT NOT NULL,
+    Descripcion TEXT
+);
+
+INSERT INTO Roles (Nombre, Descripcion) VALUES
+('Administrador','Acceso total'),
+('Medico','Solo historia clinica'),
+('Recepcionista','Solo datos del paciente');
+
+-- =========================
+-- USUARIOS
+-- =========================
+CREATE TABLE Usuarios (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    NombreUsuario TEXT NOT NULL,
+    PasswordHash TEXT NOT NULL,
+    RolId INTEGER,
+    Activo INTEGER,
+    FechaCreacion TEXT,
+    FOREIGN KEY(RolId) REFERENCES Roles(Id)
+);
+
+INSERT INTO Usuarios 
+(NombreUsuario,PasswordHash,RolId,Activo,FechaCreacion)
+VALUES
+('admin','admin',1,1,datetime('now'));
+
+-- =========================
+-- PACIENTES
+-- =========================
+CREATE TABLE Pacientes (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    DNI TEXT,
+    Nombre TEXT,
+    Apellido TEXT,
+    FechaNacimiento TEXT,
+    Sexo TEXT,
+    Telefono TEXT,
+    Email TEXT,
+    Direccion TEXT,
+    ObraSocial TEXT,
+    NumeroAfiliado TEXT,
+    FechaRegistro TEXT
+);
+
+-- =========================
+-- HISTORIAS CLINICAS
+-- =========================
+CREATE TABLE HistoriasClinicas (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    PacienteId INTEGER,
+    Antecedentes TEXT,
+    Alergias TEXT,
+    MedicacionHabitual TEXT,
+    GrupoSanguineo TEXT,
+    Observaciones TEXT,
+    FechaCreacion TEXT,
+    FechaUltimaModificacion TEXT,
+    UsuarioCreacion INTEGER,
+    UsuarioModificacion INTEGER
+);
+
+-- =========================
+-- CONSULTAS
+-- =========================
+CREATE TABLE Consultas (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    PacienteId INTEGER,
+    UsuarioId INTEGER,
+    FechaHora TEXT,
+    Motivo TEXT,
+    Sintomas TEXT,
+    Diagnostico TEXT,
+    Tratamiento TEXT,
+    NotasMedicas TEXT,
+    Peso REAL,
+    Altura REAL,
+    PresionArterial TEXT,
+    Temperatura REAL
+);
+
+-- =========================
+-- RECETAS
+-- =========================
+CREATE TABLE Recetas (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ConsultaId INTEGER,
+    TextoMedico TEXT,
+    Fecha TEXT,
+    UsuarioId INTEGER
+);
+
+-- =========================
+-- ESTUDIOS
+-- =========================
+CREATE TABLE Estudios (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    PacienteId INTEGER,
+    TipoEstudio TEXT,
+    Resultado TEXT,
+    Fecha TEXT,
+    Observaciones TEXT,
+    UsuarioId INTEGER
+);
+
+-- =========================
+-- ARCHIVOS MEDICOS
+-- =========================
+CREATE TABLE ArchivosMedicos (
+    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+    PacienteId INTEGER,
+    NombreArchivo TEXT,
+    RutaArchivo TEXT,
+    TipoArchivo TEXT,
+    TamanoBytes INTEGER,
+    FechaSubida TEXT,
+    UsuarioId INTEGER,
+    Cifrado INTEGER
+);

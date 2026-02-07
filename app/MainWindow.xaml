@@ -1,0 +1,11 @@
+<Window x:Class="HistoriaClinicaApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Sistema de Historia Clínica Electrónica" 
+        Height="600" Width="1000"
+        WindowStartupLocation="CenterScreen">
+      <!-- Icon="Icons/app.ico" -->
+    <Grid>
+        <ContentControl x:Name="MainContent"/>
+    </Grid>
+</Window>

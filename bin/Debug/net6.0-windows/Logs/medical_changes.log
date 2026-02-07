@@ -1,0 +1,8 @@
+[2026-02-07 14:12:18] Usuario: 1 | Paciente: 1 | Estudio | Crear | Tipo: System.Windows.Controls.ComboBoxItem: Ecografía
+[2026-02-07 14:12:30] Usuario: 1 | Paciente: 1 | Archivo | Subir | Archivo: CADe_S1
+[2026-02-07 14:12:41] Usuario: 1 | Paciente: 1 | HistoriaClinica | Crear | Historia clínica creada
+[2026-02-07 14:12:43] Usuario: 1 | Paciente: 1 | HistoriaClinica | Actualizar | Historia clínica actualizada
+[2026-02-07 15:23:38] Usuario: 1 | Paciente: 1 | Consulta | Crear | Motivo: e4g
+[2026-02-07 15:23:49] Usuario: 1 | Paciente: 1 | Estudio | Crear | Tipo: System.Windows.Controls.ComboBoxItem: Radiografía
+[2026-02-07 15:23:57] Usuario: 1 | Paciente: 1 | Archivo | Subir | Archivo: CADe_S1
+[2026-02-07 15:24:25] Usuario: 1 | Paciente: 1 | HistoriaClinica | Crear | Historia clínica creada
