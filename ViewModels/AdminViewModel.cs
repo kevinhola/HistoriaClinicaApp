@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
@@ -57,7 +57,7 @@ namespace HistoriaClinicaApp.ViewModels
 
         private void CargarUsuarios()
         {
-            Usuarios = new ObservableCollection<Usuario>(_dbService.ObtenerTodosUsuarios());
+            Usuarios = new ObservableCollection<Usuario>(_dbService.ObtenerTodosUsuarios().Result);
         }
 
         private void NuevoUsuario()
@@ -71,10 +71,10 @@ namespace HistoriaClinicaApp.ViewModels
                     _logService.RegistrarAcceso(
                         SessionManager.CurrentUser.Id,
                         SessionManager.CurrentUser.NombreUsuario,
-                        $"Creó usuario: {dialog.Usuario.NombreUsuario}"
+                        $"CreÃ³ usuario: {dialog.Usuario.NombreUsuario}"
                     );
                     CargarUsuarios();
-                    MessageBox.Show("Usuario creado exitosamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Usuario creado exitosamente", "Ã‰xito", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)
                 {
@@ -97,10 +97,10 @@ namespace HistoriaClinicaApp.ViewModels
                     _logService.RegistrarAcceso(
                         SessionManager.CurrentUser.Id,
                         SessionManager.CurrentUser.NombreUsuario,
-                        $"Editó usuario: {usuario.NombreUsuario}"
+                        $"EditÃ³ usuario: {usuario.NombreUsuario}"
                     );
                     CargarUsuarios();
-                    MessageBox.Show("Usuario actualizado exitosamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Usuario actualizado exitosamente", "Ã‰xito", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)
                 {
@@ -115,7 +115,7 @@ namespace HistoriaClinicaApp.ViewModels
             if (usuario == null) return;
 
             var result = MessageBox.Show(
-                $"¿Resetear contraseña de '{usuario.NombreUsuario}' a 'Temporal123!'?",
+                $"Â¿Resetear contraseÃ±a de '{usuario.NombreUsuario}' a 'Temporal123!'?",
                 "Confirmar",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Question
@@ -130,9 +130,9 @@ namespace HistoriaClinicaApp.ViewModels
                     _logService.RegistrarAcceso(
                         SessionManager.CurrentUser.Id,
                         SessionManager.CurrentUser.NombreUsuario,
-                        $"Reseteó contraseña de: {usuario.NombreUsuario}"
+                        $"ReseteÃ³ contraseÃ±a de: {usuario.NombreUsuario}"
                     );
-                    MessageBox.Show("Contraseña reseteada a: Temporal123!", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("ContraseÃ±a reseteada a: Temporal123!", "Ã‰xito", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)
                 {
@@ -153,7 +153,7 @@ namespace HistoriaClinicaApp.ViewModels
                 _logService.RegistrarAcceso(
                     SessionManager.CurrentUser.Id,
                     SessionManager.CurrentUser.NombreUsuario,
-                    $"Cambió estado de {usuario.NombreUsuario} a: {(usuario.Activo ? "Activo" : "Inactivo")}"
+                    $"CambiÃ³ estado de {usuario.NombreUsuario} a: {(usuario.Activo ? "Activo" : "Inactivo")}"
                 );
                 CargarUsuarios();
             }

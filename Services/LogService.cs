@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 
 namespace HistoriaClinicaApp.Services
@@ -13,14 +13,14 @@ namespace HistoriaClinicaApp.Services
             Directory.CreateDirectory(_logsPath);
         }
 
-        public void RegistrarAcceso(int usuarioId, string nombreUsuario, string accion)
+        public void RegistrarAcceso(long usuarioId, string nombreUsuario, string accion)
         {
             string logFile = Path.Combine(_logsPath, "access.log");
             string mensaje = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] Usuario: {nombreUsuario} (ID: {usuarioId}) - {accion}";
             File.AppendAllText(logFile, mensaje + Environment.NewLine);
         }
 
-        public void RegistrarCambioMedico(int usuarioId, int pacienteId, string entidad, string accion, string detalle)
+        public void RegistrarCambioMedico(long usuarioId, long pacienteId, string entidad, string accion, string detalle)
         {
             string logFile = Path.Combine(_logsPath, "medical_changes.log");
             string mensaje = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] Usuario: {usuarioId} | Paciente: {pacienteId} | {entidad} | {accion} | {detalle}";
@@ -35,3 +35,4 @@ namespace HistoriaClinicaApp.Services
         }
     }
 }
+

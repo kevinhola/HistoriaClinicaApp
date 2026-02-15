@@ -1,15 +1,23 @@
-using System;
+﻿using Postgrest.Attributes;
+using Postgrest.Models;
 
 namespace HistoriaClinicaApp.Models
 {
-    public class Usuario
+    [Table("usuarios")]
+    public class Usuario : BaseModel
     {
-        public int Id { get; set; }
+        [PrimaryKey("id", false)]
+        public long Id { get; set; }
+        [Column("nombre_usuario")]
         public string NombreUsuario { get; set; }
+        [Column("password_hash")]
         public string PasswordHash { get; set; }
-        public int RolId { get; set; }
-        public Rol Rol { get; set; }
+        [Column("rol_id")]
+        public long RolId { get; set; }
+        [Column("activo")]
         public bool Activo { get; set; }
-        public DateTime FechaCreacion { get; set; }
+        [Reference(typeof(Rol))]
+        public Rol Rol { get; set; }
     }
 }
+

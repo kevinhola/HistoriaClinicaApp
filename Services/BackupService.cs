@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using System.IO.Compression;
 
@@ -39,7 +39,7 @@ namespace HistoriaClinicaApp.Services
                         AgregarDirectorioAlZip(archive, storagePath, "Storage");
                     }
 
-                    // Backup de configuración
+                    // Backup de configuraciÃ³n
                     string configPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config");
                     if (Directory.Exists(configPath))
                     {
@@ -47,7 +47,7 @@ namespace HistoriaClinicaApp.Services
                     }
                 }
 
-                // Limpiar backups antiguos (mantener últimos 10)
+                // Limpiar backups antiguos (mantener Ãºltimos 10)
                 LimpiarBackupsAntiguos();
 
                 _logService.RegistrarAcceso(

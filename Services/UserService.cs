@@ -1,4 +1,4 @@
-using System.Data.SQLite;
+﻿using System.Data.SQLite;
 using System.IO;
 using System;
 using HistoriaClinicaApp.Security;

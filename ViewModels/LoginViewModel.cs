@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
@@ -46,13 +46,13 @@ namespace HistoriaClinicaApp.ViewModels
             
             if (string.IsNullOrWhiteSpace(Usuario) || string.IsNullOrWhiteSpace(Password))
             {
-                _view.MostrarError("Por favor ingrese usuario y contraseña");
+                _view.MostrarError("Por favor ingrese usuario y contraseÃ±a");
                 return;
             }
 
             try
             {
-                var usuario = _authService.Login(Usuario, Password);
+                var usuario = _authService.Autenticar(Usuario, Password);
                 
                 if (usuario != null)
                 {
@@ -65,14 +65,14 @@ namespace HistoriaClinicaApp.ViewModels
                 else
                 {
                     // Registrar intento fallido
-                    _logService.RegistrarAcceso(0, Usuario, "Login fallido - Credenciales inválidas");
-                    _view.MostrarError("Usuario o contraseña incorrectos");
+                    _logService.RegistrarAcceso(0, Usuario, "Login fallido - Credenciales invÃ¡lidas");
+                    _view.MostrarError("Usuario o contraseÃ±a incorrectos");
                 }
             }
             catch (Exception ex)
             {
                 _logService.RegistrarError("LoginViewModel.Login", ex.Message, ex.StackTrace);
-                _view.MostrarError("Error al iniciar sesión: " + ex.Message);
+                _view.MostrarError("Error al iniciar sesiÃ³n: " + ex.Message);
             }
         }
 

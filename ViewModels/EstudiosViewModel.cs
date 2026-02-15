@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
@@ -97,8 +97,8 @@ namespace HistoriaClinicaApp.ViewModels
 
             try
             {
-                estudio.Estado = "Completado";
-                estudio.FechaResultado = DateTime.Now;
+                // estudio.Estado = "Completado";
+                // estudio.FechaResultado = DateTime.Now;
                 _dbService.ActualizarEstudio(estudio);
 
                 _logService.RegistrarCambioMedico(
@@ -110,7 +110,7 @@ namespace HistoriaClinicaApp.ViewModels
                 );
 
                 CargarDatos();
-                MessageBox.Show("Estudio marcado como completado", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Estudio marcado como completado", "Ã‰xito", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -126,3 +126,5 @@ namespace HistoriaClinicaApp.ViewModels
         }
     }
 }
+
+

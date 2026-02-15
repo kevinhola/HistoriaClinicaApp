@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Controls;
@@ -72,3 +72,4 @@ namespace HistoriaClinicaApp.Views
         }
     }
 }
+

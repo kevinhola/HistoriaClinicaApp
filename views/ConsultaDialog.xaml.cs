@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Windows;
 using HistoriaClinicaApp.Models;
@@ -48,7 +48,7 @@ namespace HistoriaClinicaApp.Views
                     $"Motivo: {Consulta.Motivo}"
                 );
 
-                MessageBox.Show("Consulta guardada", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Consulta guardada", "Ã‰xito", MessageBoxButton.OK, MessageBoxImage.Information);
                 DialogResult = true;
                 Close();
             }

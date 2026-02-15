@@ -1,4 +1,4 @@
-using System.Windows;
+﻿using System.Windows;
 using HistoriaClinicaApp.ViewModels;
 
 namespace HistoriaClinicaApp.Views

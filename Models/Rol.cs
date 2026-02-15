@@ -1,17 +1,17 @@
+﻿using Postgrest.Attributes;
+using Postgrest.Models;
+
 namespace HistoriaClinicaApp.Models
 {
-    public enum TipoRol
+    [Table("roles")]
+    public class Rol : BaseModel
     {
-        Administrador = 1,
-        Medico = 2,
-        Recepcionista = 3
-    }
-
-    public class Rol
-    {
-        public int Id { get; set; }
+        [PrimaryKey("id", false)]
+        public long Id { get; set; }
+        [Column("nombre")]
         public string Nombre { get; set; }
+        [Column("descripcion")]
         public string Descripcion { get; set; }
-        public TipoRol Tipo { get; set; }
     }
 }
+

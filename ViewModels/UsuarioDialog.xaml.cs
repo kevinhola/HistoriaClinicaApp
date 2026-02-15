@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -39,7 +39,7 @@ namespace HistoriaClinicaApp.Views
             InitializeComponent();
             _dbService = new DatabaseService();
             
-            Roles = new ObservableCollection<Rol>(_dbService.ObtenerRoles());
+            Roles = new ObservableCollection<Rol>(_dbService.ObtenerRoles().Result);
             
             if (usuario == null)
             {
@@ -71,19 +71,19 @@ namespace HistoriaClinicaApp.Views
         {
             if (string.IsNullOrWhiteSpace(Usuario.NombreUsuario))
             {
-                MessageBox.Show("Ingrese nombre de usuario", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Ingrese nombre de usuario", "ValidaciÃ³n", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (EsNuevo && string.IsNullOrWhiteSpace(_password))
             {
-                MessageBox.Show("Ingrese contraseña", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Ingrese contraseÃ±a", "ValidaciÃ³n", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (RolSeleccionado == null)
             {
-                MessageBox.Show("Seleccione un rol", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Seleccione un rol", "ValidaciÃ³n", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 

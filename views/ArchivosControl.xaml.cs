@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -65,7 +65,7 @@ namespace HistoriaClinicaApp.Views
                 var openFileDialog = new OpenFileDialog
                 {
                     Title = "Seleccionar archivo",
-                    Filter = "Todos los archivos (*.*)|*.*|PDF (*.pdf)|*.pdf|Imágenes (*.jpg;*.png)|*.jpg;*.png"
+                    Filter = "Todos los archivos (*.*)|*.*|PDF (*.pdf)|*.pdf|ImÃ¡genes (*.jpg;*.png)|*.jpg;*.png"
                 };
 
                 if (openFileDialog.ShowDialog() == true)
@@ -91,7 +91,7 @@ namespace HistoriaClinicaApp.Views
 
                     _dbService.CrearArchivoMedico(archivo);
                     CargarArchivos();
-                    MessageBox.Show("Archivo subido y cifrado", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Archivo subido y cifrado", "Ã‰xito", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception ex)
@@ -123,7 +123,7 @@ namespace HistoriaClinicaApp.Views
             if (archivo == null) return;
 
             var result = MessageBox.Show(
-                $"¿Eliminar '{archivo.NombreArchivo}'?",
+                $"Â¿Eliminar '{archivo.NombreArchivo}'?",
                 "Confirmar",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Warning
@@ -143,7 +143,7 @@ namespace HistoriaClinicaApp.Views
                         archivo.NombreArchivo
                     );
                     CargarArchivos();
-                    MessageBox.Show("Archivo eliminado", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Archivo eliminado", "Ã‰xito", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)
                 {
@@ -160,3 +160,4 @@ namespace HistoriaClinicaApp.Views
         }
     }
 }
+

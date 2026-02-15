@@ -1,4 +1,4 @@
-using HistoriaClinicaApp.Models;
+﻿using HistoriaClinicaApp.Models;
 
 namespace HistoriaClinicaApp.Security
 {

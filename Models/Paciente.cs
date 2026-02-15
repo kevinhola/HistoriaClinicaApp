@@ -1,23 +1,37 @@
-using System;
+﻿using System;
+using Postgrest.Attributes;
+using Postgrest.Models;
 
 namespace HistoriaClinicaApp.Models
 {
-    public class Paciente
+    [Table("pacientes")]
+    public class Paciente : BaseModel
     {
-        public int Id { get; set; }
+        [PrimaryKey("id", false)]
+        public long Id { get; set; }
+        [Column("dni")]
         public string DNI { get; set; }
+        [Column("nombre")]
         public string Nombre { get; set; }
+        [Column("apellido")]
         public string Apellido { get; set; }
+        [Column("fecha_nacimiento")]
         public DateTime FechaNacimiento { get; set; }
+        [Column("sexo")]
         public string Sexo { get; set; }
+        [Column("telefono")]
         public string Telefono { get; set; }
+        [Column("email")]
         public string Email { get; set; }
+        [Column("direccion")]
         public string Direccion { get; set; }
+        [Column("obra_social")]
         public string ObraSocial { get; set; }
+        [Column("numero_afiliado")]
         public string NumeroAfiliado { get; set; }
+        [Column("created_at")]
         public DateTime FechaRegistro { get; set; }
-
-        // Propiedad calculada para edad
+        
         public int Edad
         {
             get
@@ -30,3 +44,4 @@ namespace HistoriaClinicaApp.Models
         }
     }
 }
+

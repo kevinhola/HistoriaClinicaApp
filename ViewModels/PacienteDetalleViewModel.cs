@@ -1,4 +1,4 @@
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using HistoriaClinicaApp.Models;
 using HistoriaClinicaApp.Services;
 
@@ -43,3 +43,4 @@ namespace HistoriaClinicaApp.ViewModels
         }
     }
 }
+

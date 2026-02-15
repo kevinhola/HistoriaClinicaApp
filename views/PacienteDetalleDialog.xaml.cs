@@ -1,4 +1,4 @@
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows;
 using HistoriaClinicaApp.Models;
 using HistoriaClinicaApp.Services;
@@ -13,7 +13,7 @@ namespace HistoriaClinicaApp.Views
 
         public string NombrePaciente => _paciente != null ? $"{_paciente.Apellido}, {_paciente.Nombre}" : "";
         public string DNIPaciente => _paciente?.DNI ?? "";
-        public string EdadPaciente => _paciente != null ? $"{_paciente.Edad} años" : "";
+        public string EdadPaciente => _paciente != null ? $"{_paciente.Edad} aÃ±os" : "";
         public string SexoPaciente => _paciente?.Sexo ?? "";
 
         public PacienteDetalleDialog(int pacienteId)
@@ -36,7 +36,7 @@ namespace HistoriaClinicaApp.Views
             OnPropertyChanged(nameof(EdadPaciente));
             OnPropertyChanged(nameof(SexoPaciente));
             
-            // Cargar vistas en pestañas
+            // Cargar vistas en pestaÃ±as
             HistoriaContent.Content = new HistoriaClinicaView(_pacienteId);
             ConsultasContent.Content = new ConsultasView(_pacienteId);
             EstudiosContent.Content = new EstudiosView(_pacienteId);
@@ -50,3 +50,4 @@ namespace HistoriaClinicaApp.Views
         }
     }
 }
+

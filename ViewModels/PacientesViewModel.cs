@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -81,7 +81,7 @@ namespace HistoriaClinicaApp.ViewModels
 
         private void CargarPacientes()
         {
-            Pacientes = new ObservableCollection<Paciente>(_dbService.ObtenerPacientes());
+            Pacientes = new ObservableCollection<Paciente>(_dbService.ObtenerPacientes().Result);
             PacientesFiltrados = new ObservableCollection<Paciente>(Pacientes);
         }
 
@@ -117,11 +117,11 @@ namespace HistoriaClinicaApp.ViewModels
                     _logService.RegistrarAcceso(
                         SessionManager.CurrentUser.Id,
                         SessionManager.CurrentUser.NombreUsuario,
-                        $"Creó paciente: {paciente.Nombre} {paciente.Apellido} (DNI: {paciente.DNI})"
+                        $"CreÃ³ paciente: {paciente.Nombre} {paciente.Apellido} (DNI: {paciente.DNI})"
                     );
                     
                     CargarPacientes();
-                    MessageBox.Show("Paciente creado exitosamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Paciente creado exitosamente", "Ã‰xito", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)
                 {
@@ -145,11 +145,11 @@ namespace HistoriaClinicaApp.ViewModels
                     _logService.RegistrarAcceso(
                         SessionManager.CurrentUser.Id,
                         SessionManager.CurrentUser.NombreUsuario,
-                        $"Editó paciente: {paciente.Nombre} {paciente.Apellido} (DNI: {paciente.DNI})"
+                        $"EditÃ³ paciente: {paciente.Nombre} {paciente.Apellido} (DNI: {paciente.DNI})"
                     );
                     
                     CargarPacientes();
-                    MessageBox.Show("Paciente actualizado exitosamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Paciente actualizado exitosamente", "Ã‰xito", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)
                 {
@@ -164,8 +164,8 @@ namespace HistoriaClinicaApp.ViewModels
             if (paciente == null) return;
 
             var result = MessageBox.Show(
-                $"¿Está seguro de eliminar al paciente {paciente.Nombre} {paciente.Apellido}?",
-                "Confirmar eliminación",
+                $"Â¿EstÃ¡ seguro de eliminar al paciente {paciente.Nombre} {paciente.Apellido}?",
+                "Confirmar eliminaciÃ³n",
                 MessageBoxButton.YesNo,
                 MessageBoxImage.Warning
             );
@@ -179,11 +179,11 @@ namespace HistoriaClinicaApp.ViewModels
                     _logService.RegistrarAcceso(
                         SessionManager.CurrentUser.Id,
                         SessionManager.CurrentUser.NombreUsuario,
-                        $"Eliminó paciente: {paciente.Nombre} {paciente.Apellido} (DNI: {paciente.DNI})"
+                        $"EliminÃ³ paciente: {paciente.Nombre} {paciente.Apellido} (DNI: {paciente.DNI})"
                     );
                     
                     CargarPacientes();
-                    MessageBox.Show("Paciente eliminado exitosamente", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Paciente eliminado exitosamente", "Ã‰xito", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 catch (Exception ex)
                 {
@@ -207,3 +207,4 @@ namespace HistoriaClinicaApp.ViewModels
         }
     }
 }
+

@@ -1,4 +1,4 @@
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using HistoriaClinicaApp.ViewModels;
 
@@ -27,7 +27,7 @@ namespace HistoriaClinicaApp.Views
 
             var icono = new TextBlock
             {
-                Text = "🏥",
+                Text = "ðŸ¥",
                 FontSize = 80,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 Margin = new Thickness(0, 0, 0, 20)
@@ -35,7 +35,7 @@ namespace HistoriaClinicaApp.Views
 
             var titulo = new TextBlock
             {
-                Text = "Sistema de Historias Clínica Electrónica",
+                Text = "Sistema de Historias ClÃ­nica ElectrÃ³nica",
                 FontSize = 28,
                 FontWeight = FontWeights.Bold,
                 HorizontalAlignment = HorizontalAlignment.Center,
@@ -44,7 +44,7 @@ namespace HistoriaClinicaApp.Views
 
             var subtitulo = new TextBlock
             {
-                Text = "Gestión médica profesional y segura",
+                Text = "GestiÃ³n mÃ©dica profesional y segura",
                 FontSize = 16,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 Foreground = System.Windows.Media.Brushes.Gray

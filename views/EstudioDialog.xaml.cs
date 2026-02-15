@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Windows;
 using HistoriaClinicaApp.Models;
@@ -48,7 +48,7 @@ namespace HistoriaClinicaApp.Views
         {
             if (string.IsNullOrWhiteSpace(Estudio.TipoEstudio))
             {
-                MessageBox.Show("Seleccione tipo de estudio", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Seleccione tipo de estudio", "ValidaciÃ³n", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -63,7 +63,7 @@ namespace HistoriaClinicaApp.Views
                     $"Tipo: {Estudio.TipoEstudio}"
                 );
 
-                MessageBox.Show("Estudio guardado", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Estudio guardado", "Ã‰xito", MessageBoxButton.OK, MessageBoxImage.Information);
                 DialogResult = true;
                 Close();
             }

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Windows;
 using HistoriaClinicaApp.Models;
@@ -26,19 +26,19 @@ namespace HistoriaClinicaApp.Views
             // Validaciones
             if (string.IsNullOrWhiteSpace(Paciente.DNI))
             {
-                MessageBox.Show("El DNI es obligatorio", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("El DNI es obligatorio", "ValidaciÃ³n", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(Paciente.Nombre))
             {
-                MessageBox.Show("El nombre es obligatorio", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("El nombre es obligatorio", "ValidaciÃ³n", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(Paciente.Apellido))
             {
-                MessageBox.Show("El apellido es obligatorio", "Validación", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("El apellido es obligatorio", "ValidaciÃ³n", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.IO;
 using HistoriaClinicaApp.Models;
 
@@ -61,7 +61,7 @@ namespace HistoriaClinicaApp.Services
                 _logService.RegistrarAcceso(
                     Security.SessionManager.CurrentUser.Id,
                     Security.SessionManager.CurrentUser.NombreUsuario,
-                    $"Abrió archivo: {archivo.NombreArchivo} del paciente ID: {archivo.PacienteId}"
+                    $"AbriÃ³ archivo: {archivo.NombreArchivo} del paciente ID: {archivo.PacienteId}"
                 );
 
                 return rutaTemporal;

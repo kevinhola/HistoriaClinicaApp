@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -39,7 +39,7 @@ namespace HistoriaClinicaApp.Views
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (bool)value ? "🔒 Desactivar" : "✅ Activar";
+            return (bool)value ? "ðŸ”’ Desactivar" : "âœ… Activar";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

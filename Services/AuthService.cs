@@ -1,69 +1,47 @@
-using System;
-using System.Data.SQLite;
-using System.IO;
+﻿using System;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using HistoriaClinicaApp.Models;
-using HistoriaClinicaApp.Security;
 
 namespace HistoriaClinicaApp.Services
 {
     public class AuthService
     {
-        private readonly string _connectionString;
+        private readonly DatabaseService _dbService;
 
         public AuthService()
         {
-            string dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Database", "clinica.db");
-            _connectionString = $"Data Source={dbPath};Version=3;";
+            _dbService = new DatabaseService();
         }
 
-        public Usuario Login(string nombreUsuario, string password)
+        public Usuario Autenticar(string nombreUsuario, string password)
         {
-            using (var conn = new SQLiteConnection(_connectionString))
+            try
             {
-                conn.Open();
-                string sql = @"SELECT u.*, r.Nombre as RolNombre, r.Descripcion as RolDescripcion 
-                              FROM Usuarios u
-                              INNER JOIN Roles r ON u.RolId = r.Id
-                              WHERE u.NombreUsuario = @NombreUsuario AND u.Activo = 1";
-
-                using (var cmd = new SQLiteCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@NombreUsuario", nombreUsuario);
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            string storedHash = reader["PasswordHash"].ToString();
-                            
-                            // Verificar password
-                            if (PasswordHasher.VerifyPassword(password, storedHash))
-                            {
-                                var usuario = new Usuario
-                                {
-                                    Id = Convert.ToInt32(reader["Id"]),
-                                    NombreUsuario = reader["NombreUsuario"].ToString(),
-                                    PasswordHash = storedHash,
-                                    RolId = Convert.ToInt32(reader["RolId"]),
-                                    Activo = Convert.ToBoolean(reader["Activo"]),
-                                    FechaCreacion = Convert.ToDateTime(reader["FechaCreacion"]),
-                                    Rol = new Rol
-                                    {
-                                        Id = Convert.ToInt32(reader["RolId"]),
-                                        Nombre = reader["RolNombre"].ToString(),
-                                        Descripcion = reader["RolDescripcion"].ToString()
-                                    }
-                                };
-
-                                // Establecer sesión
-                                SessionManager.Login(usuario);
-                                return usuario;
-                            }
-                        }
-                    }
-                }
+                var usuarios = _dbService.ObtenerTodosUsuarios().Result;
+                var usuario = usuarios.FirstOrDefault(u => u.NombreUsuario == nombreUsuario && u.Activo);
+                if (usuario == null) return null;
+                
+                string hashedPassword = HashPassword(password);
+                if (usuario.PasswordHash == hashedPassword)
+                    return usuario;
+                
+                return null;
             }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error en autenticación: {ex.Message}");
+            }
+        }
 
-            return null;
+        public static string HashPassword(string password)
+        {
+            using (var sha256 = SHA256.Create())
+            {
+                var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(bytes);
+            }
         }
     }
 }

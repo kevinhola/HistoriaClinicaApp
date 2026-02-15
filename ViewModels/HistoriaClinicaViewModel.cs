@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
@@ -40,7 +40,7 @@ namespace HistoriaClinicaApp.ViewModels
 
         private void CargarHistoria()
         {
-            Historia = _dbService.ObtenerHistoriaClinica(_pacienteId);
+            Historia = _dbService.ObtenerHistoriaClinica(_pacienteId).Result;
             if (Historia == null)
             {
                 Historia = new HistoriaClinica
@@ -66,7 +66,7 @@ namespace HistoriaClinicaApp.ViewModels
                         _pacienteId,
                         "HistoriaClinica",
                         "Crear",
-                        "Historia clínica creada"
+                        "Historia clÃ­nica creada"
                     );
                 }
                 else
@@ -77,11 +77,11 @@ namespace HistoriaClinicaApp.ViewModels
                         _pacienteId,
                         "HistoriaClinica",
                         "Actualizar",
-                        "Historia clínica actualizada"
+                        "Historia clÃ­nica actualizada"
                     );
                 }
 
-                MessageBox.Show("Historia clínica guardada", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Historia clÃ­nica guardada", "Ã‰xito", MessageBoxButton.OK, MessageBoxImage.Information);
                 CargarHistoria();
             }
             catch (Exception ex)
